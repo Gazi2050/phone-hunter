@@ -32,15 +32,21 @@ const displayPhones = (phones, isShowAll) => {
         <figure><img src="${phone.image}" alt="Shoes" /></figure>
         <div class="card-body">
             <h2 class="card-title">${phone.phone_name}</h2>
-            <p>$999</p>
-            <div class="card-actions justify-end">
-                <button class="btn btn-primary">Buy Now</button>
+            <p class="font-semibold">$999</p>
+            <div class="card-actions justify-center">
+                <button onclick="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
             </div>
         </div>
         `
         phoneContainer.appendChild(phoneCard)
     });
     toggleLoadingSpinner(false);
+}
+
+const handleShowDetails = async (id) => {
+    console.log('click', id)
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+    const data = await res.json()
 }
 
 const handleSearch = (isShowAll) => {
